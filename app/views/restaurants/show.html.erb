@@ -5,3 +5,10 @@
 <%= link_to "Editer un restaurant", edit_restaurant_path(@restaurant) %>
 <%= link_to "Supprimer #{@restaurant.name}", restaurant_path(@restaurant), method: :delete %>
 
+<h2>Reviews</h2>
+<%= link_to "Laissez un avis", new_restaurant_review_path(@restaurant) %>
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li><%= review.rating %> - <%= review.content %></li>
+  <% end %>
+</ul>

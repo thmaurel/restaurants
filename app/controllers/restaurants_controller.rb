@@ -36,7 +36,7 @@ class RestaurantsController < ApplicationController
   end
 
   def top
-    @restaurants = Restaurant.all.select{|restaurant| restaurant.rating == 5}
+    @restaurants = Restaurant.where(rating: 5)
   end
 
   private
