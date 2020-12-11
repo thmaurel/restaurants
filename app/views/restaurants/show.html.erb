@@ -1,7 +1,7 @@
 <h1><%= @restaurant.name %></h1>
 <p>Ce restaurant a une note moyenne de <%= @restaurant.rating %></p>
 
-<a href="#">Editer un restaurant</a>
-<a href="#">Supprimer un restaurant</a>
+<%= link_to "Voir le chef", chef_restaurant_path(@restaurant) %>
+<%= link_to "Editer un restaurant", edit_restaurant_path(@restaurant) %>
+<%= link_to "Supprimer #{@restaurant.name}", restaurant_path(@restaurant), method: :delete %>
 
-<%=  %>

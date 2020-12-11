@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :chef]
+
   def index
     @restaurants = Restaurant.all
   end
@@ -14,12 +16,36 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    @restaurant.update(restaurant_params)
+    redirect_to restaurant_path(@restaurant)
+  end
+
+  def destroy
+    @restaurant.destroy
+    redirect_to restaurants_path
+  end
+
+  def chef
+    @chef = @restaurant.chef
+  end
+
+  def top
+    @restaurants = Restaurant.all.select{|restaurant| restaurant.rating == 5}
   end
 
   private
 
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def restaurant_params
-    params.require(:restaurant).permit(:name, :rating)
+    params.require(:restaurant).permit(:name, :rating, :chef)
   end
 end
